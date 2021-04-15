@@ -283,6 +283,14 @@ It's also possible to use other units, like %. Useful when you need the image to
 ![Image](/link/to/image.jpg =100%x)
 ```
 
+#### Aligning
+
+Images can also be pinned to top right using the following syntax:
+
+```
+![Image](/link/to/image.jpg){.align-abstopright}
+```
+
 ## Inline Code
 
 ### Tab {.tabset}
