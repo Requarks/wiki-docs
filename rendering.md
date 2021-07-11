@@ -227,6 +227,155 @@ will result in
 *This module doesn't have any configurable parameters.*
 
 
+
+## MultiMarkdown Tables
+### Tabset {.tabset}
+#### Definition
+
+Support for additional table formatting options defined in the [MultiMarkdown](https://fletcher.github.io/MultiMarkdown-5/tables.html) specification is provided by the [MultiMarkdown table plugin for markdown-it](https://github.com/RedBug312/markdown-it-multimd-table).
+
+The following features are supported:
+- Cell column spanning
+- Divide tables into sections
+- Multiple table headers
+- Captions
+- Omit table header (option)
+- Cell row spanning (option)
+- Multi-line rows (option)
+{.grid-list}
+
+
+#### Examples
+
+This is an example table demonstrating the basic MultiMarkdown functions.
+
+**Markdown code**
+
+```
+|             |          Grouping           ||
+First Header  | Second Header | Third Header |
+ ------------ | :-----------: | -----------: |
+Content       |          *Long Cell*        ||
+Content       |   **Cell**    |         Cell |
+
+New section   |     More      |         Data |
+And more      | With an escaped '\|'         ||  
+[Prototype table]
+```
+**Rendered table**
+
+|             |          Grouping           ||
+First Header  | Second Header | Third Header |
+ ------------ | :-----------: | -----------: |
+Content       |          *Long Cell*        ||
+Content       |   **Cell**    |         Cell |
+
+New section   |     More      |         Data |
+And more      | With an escaped '\|'         ||  
+[Prototype table]
+
+- **Multiple headers** can be added by adding rows before the separator line. Headers can also make use of cell spanning, as well as the optional multiline and row span functions described below.
+- **Cell spanning** can be performed by adding additional pipes to the end of the cell. The number of pipes equals the number of columns the cell should span.
+ - **Captions** must be at the beginning of the line immediately before or after the table, and must be wrapped in brackets. If there is a caption before and after the table, only the one before the table will be used. A caption is not required.
+{.grid-list}
+
+
+##### Headerless tables
+
+The header row can be eliminated. A separator line is still required.
+
+**Markdown code**
+
+```
+| :--        | :--:  | --: |
+| This       | is    | a   |
+| headerless | table | !   |
+```
+
+**Rendered table**
+
+| :--        | :--:  | --: |
+| This       | is    | a   |
+| headerless | table | !   |
+
+
+
+##### Multiline
+
+Adding a backslash to the end of the line causes the line to merge with the line below. Markdown formatting such as lists, blockquotes, or code blocks will span across lines as well. Notice that the backslash can either be placed after the pipe character, or it can directly replace the pipe character.
+
+
+**Markdown code:**
+
+```
+|   Markdown   | Rendered HTML |
+|--------------|---------------|
+|    *Italic*  | *Italic*      | \
+|              |               |
+|    - Item 1  | - Item 1      | \
+|    - Item 2  | - Item 2      |
+|    ```python | ```python     \
+|    .1 + .2   | .1 + .2       \
+|    ```       | ```           |
+```
+**Rendered table:**
+
+|   Markdown   | Rendered HTML |
+|--------------|---------------|
+|    *Italic*  | *Italic*      | \
+|              |               |
+|    - Item 1  | - Item 1      | \
+|    - Item 2  | - Item 2      |
+|    ```python | ```python     \
+|    .1 + .2   | .1 + .2       \
+|    ```       | ```           |
+
+
+
+##### Rowspan
+
+Cells that are otherwise empty can be merged with the cell above by using `^^` to indicate a merge.
+
+**Markdown code:**
+
+```
+Stage              | Direct Products | ATP Yields
+----:              | --------------: | ---------:      
+Glycolysis         | 2 ATP                     ||
+^^                 | 2 NADH          | 3--5 ATP |
+Pyruvaye oxidation | 2 NADH          | 5 ATP    |
+Citric acid cycle  | 2 ATP                     ||
+^^                 | 6 NADH          | 15 ATP   |
+^^                 | 2 FADH2         | 3 ATP    |
+**30--32** ATP                                |||
+[Net ATP yields per hexose]
+```
+
+**Rendered table:**
+
+Stage              | Direct Products | ATP Yields
+----:              | --------------: | ---------:      
+Glycolysis         | 2 ATP                     ||
+^^                 | 2 NADH          | 3--5 ATP |
+Pyruvaye oxidation | 2 NADH          | 5 ATP    |
+Citric acid cycle  | 2 ATP                     ||
+^^                 | 6 NADH          | 15 ATP   |
+^^                 | 2 FADH2         | 3 ATP    |
+**30--32** ATP                                |||
+[Net ATP yields per hexose]
+
+
+Examples are taken and adapted from the [plugin](https://github.com/RedBug312/markdown-it-multimd-table) and [MultiMarkdown](https://fletcher.github.io/MultiMarkdown-5/tables.html) documentation.
+
+
+#### Parameters
+
+- **Headerless**: Enable tables without headers.
+- **Multiline**: Enable rows to span multiple lines.
+- **Rowspan**: Enable cells to span multiple rows.
+{.grid-list}
+
+
 # HTML
 ### Tabset {.tabset}
 #### Definition
